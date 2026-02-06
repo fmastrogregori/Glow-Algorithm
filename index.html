@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow-Algorithm | AI Skincare Experience</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <button id="sosBtn" onclick="toggleSOS()">SOS</button>
+
+    <header>
+        <h1>Glow-Algorithm</h1>
+        <p>Il tuo consulente di skincare digitale</p>
+    </header>
+
+    <div class="container">
+        <div class="input-section">
+            <div class="form-group">
+                <label for="skinType">1. Il tuo tipo di pelle</label>
+                <select id="skinType">
+                    <option value="grassa">Grassa / Oleosa</option>
+                    <option value="secca">Secca / Disidratata</option>
+                    <option value="mista">Mista / Normale</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="concern">2. Preoccupazione principale</label>
+                <select id="concern">
+                    <option value="breakout">Breakout / Acne</option>
+                    <option value="rossore">Rossore / Sensibilità</option>
+                    <option value="opacita">Colorito spento / Macchie</option>
+                    <option value="invecchiamento">Invecchiamento / Rughe</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="climate">3. Clima attuale</label>
+                <select id="climate">
+                    <option value="umido">Caldo Umido / Inquinamento</option>
+                    <option value="secco">Freddo Secco / Vento</option>
+                </select>
+            </div>
+
+            <button onclick="analyzeSkin()" id="submitBtn">Genera Analisi Digitale</button>
+        </div>
+
+        <div id="loader">
+            <div class="spinner"></div>
+            <p>Interrogando il database ingredienti...</p>
+        </div>
+
+        <div id="results">
+            <div id="routineContent"></div>
+        </div>
+    </div>
+
+    <div id="sosModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="toggleSOS()">&times;</span>
+            <h2>Emergency Care SOS</h2>
+            <p>Seleziona l'emergenza per ricevere istruzioni immediate:</p>
+            <div class="sos-options">
+                <button onclick="getSOS('brufolo')">SOS Brufolo</button>
+                <button onclick="getSOS('irritazione')">SOS Irritazione</button>
+                <button onclick="getSOS('secchezza')">SOS Secchezza</button>
+            </div>
+            <div id="sosResult"></div>
+        </div>
+    </div>
+
+<div id="chat-container">
+        <button id="chat-toggle" onclick="toggleChat()">Chiedi a Glowy!</button>
+        
+        <div id="chat-window">
+            <div id="chat-header">
+                <h3>Glowy Expert</h3>
+                <span class="close-chat" onclick="toggleChat()">&times;</span>
+            </div>
+            
+            <div id="chat-body">
+                <div class="bot-msg">Ciao! Sono Glowy. Hai dubbi sulla tua routine o su un ingrediente?</div>
+            </div>
+            
+            <div id="chat-footer">
+                <input type="text" id="chat-input" placeholder="Scrivi un messaggio..." onkeypress="if(event.key === 'Enter') sendMessage()">
+                <button onclick="sendMessage()">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+<style>
+    /* Effetto bagliore per rendere lo sfondo ancora più magico */
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('https://www.transparenttextures.com/patterns/stardust.png');
+        opacity: 0.15; /* Regola l'intensità delle micro-stelline */
+        pointer-events: none;
+        z-index: -1;
+    }
+</style>
+</body>
+</html>

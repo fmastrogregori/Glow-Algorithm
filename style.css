@@ -1,0 +1,532 @@
+:root {
+    --bg: #f9f7f5;
+    --white: #ffffff;
+    --accent: #9d8ec4;
+    --accent-dark:#8172ab;
+    --danger: #d4a3a3;
+    --text: #333333; 
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    margin: 0;
+    line-height: 1.8; 
+    font-size: 1.05rem; 
+    letter-spacing: 0.3px;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+
+    /* Gradiente notturno profondo */
+    background: linear-gradient(180deg, #0f172a 0%, #3b0764 45%, #a855f7 75%, #f472b6 100%);
+    background-attachment: fixed;
+}
+
+/* Container per le stelle animate */
+body::before {
+    content: "✦"; 
+    position: fixed;
+    top: 15%; left: 10%;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 2.5rem;
+    text-shadow: 0 0 25px rgba(255, 255, 255, 1);
+    pointer-events: none;
+    z-index: -1;
+    /* Animazione luccichio */
+    animation: twinkle 4s infinite ease-in-out;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: 
+        radial-gradient(circle at 80% 20%, white 1px, transparent 1px),
+        radial-gradient(circle at 50% 50%, white 1.5px, transparent 1.5px),
+        radial-gradient(circle at 20% 80%, white 1px, transparent 1px),
+        radial-gradient(circle at 90% 40%, white 1.2px, transparent 1.2px);
+    background-size: 400px 400px;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: -1;
+    /* Animazione più lenta per le stelle piccole */
+    animation: twinkle 7s infinite ease-in-out reverse;
+}
+
+/* Definizione del luccichio */
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.1); }
+}
+
+header {
+    padding: 100px 20px 80px; /* Ridotto leggermente per avvicinare il titolo al form */
+    text-align: center;
+    
+    /* 1. Rendiamo lo sfondo TOTALMENTE trasparente */
+    background: transparent; 
+    
+    /* 2. Rimuoviamo il blur dall'header (lo metteremo solo dove serve) */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    
+    /* 3. Rimuoviamo il bordo che creava la linea netta */
+    border-bottom: none;
+}
+
+header h1 {
+    font-family: 'Playfair Display', serif;
+    color: white;
+    font-size: 4.5rem; /* Ingrandiamo per un effetto più "hero" */
+    margin: 0;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    letter-spacing: -1px;
+}
+
+header p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 05px;
+    font-weight: 300;
+    font-size: 1.2rem;
+}
+
+header h1 {
+    color: white; /* Il titolo deve essere bianco per risaltare sul blu notte */
+    margin: 0;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+header p {
+    color: rgba(255, 255, 255, 0.7); /* Sottotitolo leggermente trasparente */
+    margin-top: 10px;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem; 
+    margin: 0;
+    color: #1a1a1a;
+}
+
+.container {
+    max-width: 850px; 
+    margin: -40px auto 80px;
+    padding: 50px;
+    background: rgba(255, 255, 255, 0.98); /* Quasi bianco solido */
+    backdrop-filter: blur(10px); /* Effetto vetro sul bordo */
+    border-radius: 28px;
+    box-shadow: var(--shadow);
+    position: relative;
+    z-index: 10;
+}
+
+.form-group {
+    margin-bottom: 35px;
+}
+
+label {
+    display: block;
+    font-size: 0.85rem; 
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    margin-bottom: 12px;
+    color: #666;
+}
+
+select {
+    width: 100%;
+    padding: 18px; 
+    border: 1px solid #ddd;
+    border-radius: 14px;
+    font-family: inherit;
+    font-size: 1.1rem; 
+    background-color: #fafafa;
+    color: var(--text);
+}
+
+button {
+    width: 100%;
+    padding: 18px;
+    background-color: var(--accent);
+    color: #ffffff;
+    border: none;
+    border-radius: 14px;
+    font-size: 1.2rem;
+    /* 1. Aumentato il peso a 600 per una scritta più nitida */
+    font-weight: 600; 
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+
+    /* 2. Ombra del testo per contrasto (essenziale per scritte bianche su lilla) */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); 
+    
+    /* 3. Spaziatura per un look più moderno e leggibile */
+    letter-spacing: 0.5px;
+}
+
+button:hover {
+    background-color: var(--accent-dark);
+    transform: translateY(-2px);
+    /* 4. Ombra esterna potenziata per dare l'idea che il pulsante sia luminoso */
+    box-shadow: 0 8px 20px rgba(157, 142, 196, 0.4); 
+    
+    /* 5. Aumento leggero del bagliore del testo al passaggio del mouse */
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* --- SEZIONE RISULTATI --- */
+
+#results {
+    display: none;
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 2px solid #f0f0f0;
+    animation: slideUp 0.6s ease-out;
+}
+
+.badge-container {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 35px;
+}
+
+.tag {
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white;
+}
+
+.tag-key { background-color: var(--accent); }
+.tag-avoid { background-color: var(--danger); }
+
+h3 {
+    font-size: 2.3rem; 
+    margin-bottom: 25px;
+    font-family: 'Playfair Display', serif;
+}
+
+/* 1. SEZIONE ANALISI GENERALE (Parentesi Lilla Grande) */
+.analysis-section {
+    border-left: 5px solid var(--accent) !important; /* Forza il lilla */
+    border-radius: 20px 0 0 20px; 
+    padding-left: 25px;
+    margin: 30px 0;
+    border-top: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+}
+
+/* 2. ELIMINAZIONE TOTALE PARENTESI VERDE PICCOLA */
+/* Applichiamo il reset a tutti i possibili colpevoli dentro l'analisi */
+.analysis-section blockquote, 
+.analysis-section div, 
+.analysis-section p,
+.analysis-section span {
+    border-left: none !important; /* Rimuove categoricamente la linea verde */
+    border-color: transparent !important;
+    padding-left: 0; 
+    margin-left: 0;
+}
+
+/* 3. TESTO (Inter - Look pulito) */
+.analysis-section p {
+    font-family: 'Inter', sans-serif; 
+    font-weight: 300;
+    color: #4a4a4a;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.analysis-section strong, 
+.analysis-section b {
+    color: var(--accent-dark);
+    font-weight: 600;
+}
+
+/* --- GRIGLIA E FOTO --- */
+.product-grid {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 50px;
+    margin: 40px 0;
+}
+.product-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 24px;
+    border: 1px solid #f5f5f5;
+    text-align: center;
+}
+
+.res-img {
+    width: 100%;
+    height: 320px; 
+    object-fit: cover;
+    border-radius: 18px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+}
+
+.product-card h4 {
+    font-size: 1.1rem;
+    margin: 15px 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--accent-dark);
+}
+
+/* --- SEZIONE SOS --- */
+
+#sosBtn {
+    position: fixed;
+    top: 40px;            
+    right: 40px;          
+    width: 90px;          
+    height: 90px;         
+    padding: 0;           
+    background-color: #d62828; 
+    color: white;
+    border: none;
+    border-radius: 50%;   
+    font-size: 1.5rem; /* Unificato per eleganza */
+    font-weight: 700;
+    z-index: 1000;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(214, 40, 40, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease;
+}
+
+#sosBtn:hover {
+    transform: scale(1.1);
+    background-color: #bc2323;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+    overflow-y: auto;
+    padding: 20px 0;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 40px auto;
+    padding: 50px 40px;
+    border-radius: 30px;
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+    animation: slideDown 0.4s ease-out;
+    color: #333333;
+}
+
+.sos-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin: 30px 0;
+}
+
+.sos-options button {
+    background-color: #f8f8f8;
+    color: var(--text);
+    font-size: 1.1rem;
+    padding: 18px;
+    border: 1px solid #eee;
+    border-radius: 12px;
+}
+
+#sosResult {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 2px solid #f5f5f5;
+    padding-bottom: 20px;
+    text-align: left;
+}
+
+/* --- CHATBOT GLOWY --- */
+
+#chat-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+}
+
+#chat-toggle {
+    width: auto;
+    padding: 18px 35px; /* Ingrandito come richiesto */
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    margin-bottom: 0;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#chat-toggle:hover {
+    transform: scale(1.05);
+    background-color: var(--accent-dark);
+}
+
+#chat-window {
+    display: none;
+    width: 320px;
+    height: 450px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    flex-direction: column;
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    overflow: hidden;
+}
+
+/* Header sistemato: Glowy Expert in una riga e X a destra */
+#chat-header {
+    background: var(--accent);
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between; /* Spinge il titolo a sinistra e la X a destra */
+    align-items: center;
+    border-radius: 20px 20px 0 0;
+}
+
+#chat-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    white-space: nowrap; /* Forza il testo su una sola riga */
+}
+
+.close-chat {
+    cursor: pointer;
+    font-size: 1.4rem;
+    line-height: 1;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.close-chat:hover {
+    opacity: 1;
+}
+
+#chat-body {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background: #fdfaf6;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Stile per i messaggi (per riferimento) */
+.user-msg {
+    align-self: flex-end;
+    background: #e2e8f0;
+    padding: 8px 12px;
+    border-radius: 15px 15px 0 15px;
+    max-width: 80%;
+    font-size: 0.9rem;
+}
+
+.bot-msg {
+    align-self: flex-start;
+    background: #d4e3c8; /* Verde tenue coordinato */
+    padding: 8px 12px;
+    border-radius: 15px 15px 15px 0;
+    max-width: 80%;
+    font-size: 0.9rem;
+}
+.bot-msg, .user-msg {
+    padding: 10px 14px;
+    border-radius: 15px;
+    max-width: 85%;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.bot-msg { background: #ece3da; align-self: flex-start; color: #444; }
+.user-msg { background: var(--accent); color: white; align-self: flex-end; }
+
+#chat-footer {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #eee;
+    background: white;
+}
+
+#chat-input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    outline: none;
+    font-family: inherit;
+}
+
+#chat-footer button {
+    width: 40px;
+    padding: 0;
+    margin-bottom: 0;
+    background: none;
+    color: var(--accent);
+    font-size: 1.5rem;
+}
+
+/* --- ANIMAZIONI E UTILITY --- */
+
+.footer-info {
+    font-size: 0.8rem;
+    margin-top: 60px;
+    color: #bbb;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.close {
+    position: absolute;
+    right: 25px;
+    top: 15px;
+    font-size: 35px;
+    color: #999;
+    cursor: pointer;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
