@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glow-Algorithm | AI Skincare Experience</title>
@@ -9,48 +10,50 @@
 </head>
 <body>
 
+    <!-- Pulsanti di controllo principali -->
     <button id="sosBtn" onclick="toggleSOS()">SOS</button>
+    <button id="langBtn" onclick="toggleLanguage()">EN</button>
 
     <header>
         <h1>Glow-Algorithm</h1>
-        <p>Il tuo consulente di skincare digitale</p>
+        <p data-key="subtitle">Il tuo consulente di skincare digitale</p>
     </header>
 
     <div class="container">
         <div class="input-section">
             <div class="form-group">
-                <label for="skinType">1. Il tuo tipo di pelle</label>
+                <label for="skinType" data-key="labelSkinType">1. Il tuo tipo di pelle</label>
                 <select id="skinType">
-                    <option value="grassa">Grassa / Oleosa</option>
-                    <option value="secca">Secca / Disidratata</option>
-                    <option value="mista">Mista / Normale</option>
+                    <option value="grassa" data-key="optGrassa">Grassa / Oleosa</option>
+                    <option value="secca" data-key="optSecca">Secca / Disidratata</option>
+                    <option value="mista" data-key="optMista">Mista / Normale</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="concern">2. Preoccupazione principale</label>
+                <label for="concern" data-key="labelConcern">2. Preoccupazione principale</label>
                 <select id="concern">
-                    <option value="breakout">Breakout / Acne</option>
-                    <option value="rossore">Rossore / Sensibilità</option>
-                    <option value="opacita">Colorito spento / Macchie</option>
-                    <option value="invecchiamento">Invecchiamento / Rughe</option>
+                    <option value="breakout" data-key="optBreakout">Breakout / Acne</option>
+                    <option value="rossore" data-key="optRossore">Rossore / Sensibilità</option>
+                    <option value="opacita" data-key="optOpacita">Colorito spento / Macchie</option>
+                    <option value="invecchiamento" data-key="optInvecchiamento">Invecchiamento / Rughe</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="climate">3. Clima attuale</label>
+                <label for="climate" data-key="labelClimate">3. Clima attuale</label>
                 <select id="climate">
-                    <option value="umido">Caldo Umido / Inquinamento</option>
-                    <option value="secco">Freddo Secco / Vento</option>
+                    <option value="umido" data-key="optUmido">Caldo Umido / Inquinamento</option>
+                    <option value="secco" data-key="optSecco">Freddo Secco / Vento</option>
                 </select>
             </div>
 
-            <button onclick="analyzeSkin()" id="submitBtn">Genera Analisi Digitale</button>
+            <button onclick="analyzeSkin()" id="submitBtn" data-key="btnAnalyze">Genera Analisi Digitale</button>
         </div>
 
         <div id="loader">
             <div class="spinner"></div>
-            <p>Interrogando il database ingredienti...</p>
+            <p data-key="loaderText">Interrogando il database ingredienti...</p>
         </div>
 
         <div id="results">
@@ -61,19 +64,19 @@
     <div id="sosModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="toggleSOS()">&times;</span>
-            <h2>Emergency Care SOS</h2>
-            <p>Seleziona l'emergenza per ricevere istruzioni immediate:</p>
+            <h2 data-key="sosTitle">Emergency Care SOS</h2>
+            <p data-key="sosSubtitle">Seleziona l'emergenza per ricevere istruzioni immediate:</p>
             <div class="sos-options">
-                <button onclick="getSOS('brufolo')">SOS Brufolo</button>
-                <button onclick="getSOS('irritazione')">SOS Irritazione</button>
-                <button onclick="getSOS('secchezza')">SOS Secchezza</button>
+                <button onclick="getSOS('brufolo')" data-key="btnSosBrufolo">SOS Brufolo</button>
+                <button onclick="getSOS('irritazione')" data-key="btnSosIrritazione">SOS Irritazione</button>
+                <button onclick="getSOS('secchezza')" data-key="btnSosSecchezza">SOS Secchezza</button>
             </div>
             <div id="sosResult"></div>
         </div>
     </div>
 
-<div id="chat-container">
-        <button id="chat-toggle" onclick="toggleChat()">Chiedi a Glowy!</button>
+    <div id="chat-container">
+        <button id="chat-toggle" onclick="toggleChat()" data-key="btnChatToggle">Chiedi a Glowy!</button>
         
         <div id="chat-window">
             <div id="chat-header">
@@ -82,7 +85,7 @@
             </div>
             
             <div id="chat-body">
-                <div class="bot-msg">Ciao! Sono Glowy. Hai dubbi sulla tua routine o su un ingrediente?</div>
+                <div class="bot-msg" id="chatWelcomeMsg">Ciao! Sono Glowy. Hai dubbi sulla tua routine o su un ingrediente?</div>
             </div>
             
             <div id="chat-footer">

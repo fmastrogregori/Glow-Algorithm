@@ -2,7 +2,7 @@
     --bg: #f9f7f5;
     --white: #ffffff;
     --accent: #9d8ec4;
-    --accent-dark:#8172ab;
+    --accent-dark: #8172ab;
     --danger: #d4a3a3;
     --text: #333333; 
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -63,46 +63,64 @@ body::after {
     50% { opacity: 0.8; transform: scale(1.1); }
 }
 
+/* --- PULSANTE CAMBIO LINGUA (Piccolo cerchio in alto a sinistra) --- */
+#langBtn {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    width: 46px !important;
+    height: 46px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: rgba(255, 255, 255, 0.12) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    border-radius: 50% !important;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    z-index: 1000;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+#langBtn:hover {
+    background: rgba(255, 255, 255, 0.25) !important;
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+}
+
+/* --- HEADER --- */
 header {
-    padding: 100px 20px 80px; /* Ridotto leggermente per avvicinare il titolo al form */
+    padding: 100px 20px 80px; 
     text-align: center;
-    
-    /* 1. Rendiamo lo sfondo TOTALMENTE trasparente */
     background: transparent; 
-    
-    /* 2. Rimuoviamo il blur dall'header (lo metteremo solo dove serve) */
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    
-    /* 3. Rimuoviamo il bordo che creava la linea netta */
     border-bottom: none;
 }
 
 header h1 {
     font-family: 'Playfair Display', serif;
     color: white;
-    font-size: 4.5rem; /* Ingrandiamo per un effetto più "hero" */
+    font-size: 4.5rem; 
     margin: 0;
-    text-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     letter-spacing: -1px;
 }
 
 header p {
-    color: rgba(255, 255, 255, 0.9);
-    margin-top: 05px;
+    color: rgba(255, 255, 255, 0.85);
+    margin-top: 10px;
     font-weight: 300;
     font-size: 1.2rem;
-}
-
-header h1 {
-    color: white; /* Il titolo deve essere bianco per risaltare sul blu notte */
-    margin: 0;
-    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-header p {
-    color: rgba(255, 255, 255, 0.7); /* Sottotitolo leggermente trasparente */
-    margin-top: 10px;
 }
 
 h1 {
@@ -112,12 +130,13 @@ h1 {
     color: #1a1a1a;
 }
 
+/* --- CONTENITORE PRINCIPALE --- */
 .container {
     max-width: 850px; 
     margin: -40px auto 80px;
     padding: 50px;
-    background: rgba(255, 255, 255, 0.98); /* Quasi bianco solido */
-    backdrop-filter: blur(10px); /* Effetto vetro sul bordo */
+    background: rgba(255, 255, 255, 0.98); 
+    backdrop-filter: blur(10px); 
     border-radius: 28px;
     box-shadow: var(--shadow);
     position: relative;
@@ -157,31 +176,22 @@ button {
     border: none;
     border-radius: 14px;
     font-size: 1.2rem;
-    /* 1. Aumentato il peso a 600 per una scritta più nitida */
     font-weight: 600; 
     cursor: pointer;
     transition: all 0.3s ease;
     margin-bottom: 20px;
-
-    /* 2. Ombra del testo per contrasto (essenziale per scritte bianche su lilla) */
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); 
-    
-    /* 3. Spaziatura per un look più moderno e leggibile */
     letter-spacing: 0.5px;
 }
 
 button:hover {
     background-color: var(--accent-dark);
     transform: translateY(-2px);
-    /* 4. Ombra esterna potenziata per dare l'idea che il pulsante sia luminoso */
     box-shadow: 0 8px 20px rgba(157, 142, 196, 0.4); 
-    
-    /* 5. Aumento leggero del bagliore del testo al passaggio del mouse */
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 /* --- SEZIONE RISULTATI --- */
-
 #results {
     display: none;
     margin-top: 60px;
@@ -216,9 +226,9 @@ h3 {
     font-family: 'Playfair Display', serif;
 }
 
-/* 1. SEZIONE ANALISI GENERALE (Parentesi Lilla Grande) */
+/* Analisi Generale (Bordo Lilla) */
 .analysis-section {
-    border-left: 5px solid var(--accent) !important; /* Forza il lilla */
+    border-left: 5px solid var(--accent) !important; 
     border-radius: 20px 0 0 20px; 
     padding-left: 25px;
     margin: 30px 0;
@@ -227,19 +237,17 @@ h3 {
     border-bottom: none !important;
 }
 
-/* 2. ELIMINAZIONE TOTALE PARENTESI VERDE PICCOLA */
-/* Applichiamo il reset a tutti i possibili colpevoli dentro l'analisi */
+/* Reset dei bordi interni per evitare linee verdi residue */
 .analysis-section blockquote, 
 .analysis-section div, 
 .analysis-section p,
 .analysis-section span {
-    border-left: none !important; /* Rimuove categoricamente la linea verde */
+    border-left: none !important; 
     border-color: transparent !important;
     padding-left: 0; 
     margin-left: 0;
 }
 
-/* 3. TESTO (Inter - Look pulito) */
 .analysis-section p {
     font-family: 'Inter', sans-serif; 
     font-weight: 300;
@@ -254,13 +262,20 @@ h3 {
     font-weight: 600;
 }
 
-/* --- GRIGLIA E FOTO --- */
+/* --- GRIGLIA E IMMAGINI --- */
 .product-grid {
     display: grid;
     grid-template-columns: 1fr; 
     gap: 50px;
     margin: 40px 0;
 }
+
+@media (min-width: 768px) {
+    .product-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
 .product-card {
     background: var(--white);
     padding: 30px;
@@ -287,19 +302,18 @@ h3 {
 }
 
 /* --- SEZIONE SOS --- */
-
 #sosBtn {
     position: fixed;
-    top: 40px;            
-    right: 40px;          
-    width: 90px;          
-    height: 90px;         
+    top: 30px;            
+    right: 30px;          
+    width: 75px;          
+    height: 75px;         
     padding: 0;           
     background-color: #d62828; 
     color: white;
     border: none;
     border-radius: 50%;   
-    font-size: 1.5rem; /* Unificato per eleganza */
+    font-size: 1.3rem; 
     font-weight: 700;
     z-index: 1000;
     cursor: pointer;
@@ -367,7 +381,6 @@ h3 {
 }
 
 /* --- CHATBOT GLOWY --- */
-
 #chat-container {
     position: fixed;
     bottom: 30px;
@@ -377,7 +390,7 @@ h3 {
 
 #chat-toggle {
     width: auto;
-    padding: 18px 35px; /* Ingrandito come richiesto */
+    padding: 18px 35px; 
     background-color: var(--accent);
     color: white;
     border: none;
@@ -409,13 +422,12 @@ h3 {
     overflow: hidden;
 }
 
-/* Header sistemato: Glowy Expert in una riga e X a destra */
 #chat-header {
     background: var(--accent);
     color: white;
     padding: 15px 20px;
     display: flex;
-    justify-content: space-between; /* Spinge il titolo a sinistra e la X a destra */
+    justify-content: space-between; 
     align-items: center;
     border-radius: 20px 20px 0 0;
 }
@@ -424,7 +436,7 @@ h3 {
     margin: 0;
     font-size: 1.1rem;
     font-weight: 600;
-    white-space: nowrap; /* Forza il testo su una sola riga */
+    white-space: nowrap; 
 }
 
 .close-chat {
@@ -449,25 +461,8 @@ h3 {
     gap: 10px;
 }
 
-/* Stile per i messaggi (per riferimento) */
-.user-msg {
-    align-self: flex-end;
-    background: #e2e8f0;
-    padding: 8px 12px;
-    border-radius: 15px 15px 0 15px;
-    max-width: 80%;
-    font-size: 0.9rem;
-}
-
-.bot-msg {
-    align-self: flex-start;
-    background: #d4e3c8; /* Verde tenue coordinato */
-    padding: 8px 12px;
-    border-radius: 15px 15px 15px 0;
-    max-width: 80%;
-    font-size: 0.9rem;
-}
-.bot-msg, .user-msg {
+/* Messaggi Bolle Chat */
+.user-msg, .bot-msg {
     padding: 10px 14px;
     border-radius: 15px;
     max-width: 85%;
@@ -475,8 +470,19 @@ h3 {
     line-height: 1.4;
 }
 
-.bot-msg { background: #ece3da; align-self: flex-start; color: #444; }
-.user-msg { background: var(--accent); color: white; align-self: flex-end; }
+.bot-msg { 
+    background: #ece3da; 
+    align-self: flex-start; 
+    color: #444; 
+    border-radius: 15px 15px 15px 0;
+}
+
+.user-msg { 
+    background: var(--accent); 
+    color: white; 
+    align-self: flex-end; 
+    border-radius: 15px 15px 0 15px;
+}
 
 #chat-footer {
     display: flex;
@@ -503,7 +509,6 @@ h3 {
 }
 
 /* --- ANIMAZIONI E UTILITY --- */
-
 .footer-info {
     font-size: 0.8rem;
     margin-top: 60px;
